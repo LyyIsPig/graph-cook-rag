@@ -28,8 +28,7 @@
 | 关键词检索 | BM25Okapi + jieba分词 + 中文停用词过滤 |
 | 融合策略 | RRF (Reciprocal Rank Fusion, k=60) |
 
-运行流程可以参考 drawio 流程图：[Graph_RAG_system_flow.drawio](Graph_RAG_system_flow.drawio)
-
+运行流程可以参考 drawio 流程图：[Graph_RAG_system_flow.png](Graph_RAG_system_flow.png)
 ---
 
 ### 二、系统启动流程
