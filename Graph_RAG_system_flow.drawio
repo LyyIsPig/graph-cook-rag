@@ -1,0 +1,346 @@
+<mxfile host="65bd71144e">
+    <diagram name="Graph RAG系统流程" id="graph-rag-flow">
+        <mxGraphModel dx="872" dy="719" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1800" pageHeight="3600" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="100" value="🚀 启动高级图RAG系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#0277bd;strokeWidth=2;fontSize=13;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="600" y="30" width="220" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a100" value="main.py → AdvancedGraphRAGSystem()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="840" y="35" width="320" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="d100" value="" style="endArrow=none;dashed=1;html=1;strokeColor=#F9A825;strokeWidth=1" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="820" y="55" as="sourcePoint"/>
+                        <mxPoint x="840" y="50" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="101" value="⚙️ 加载配置&lt;br&gt;GraphRAGConfig" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#388e3c;strokeWidth=2;fontSize=12" parent="1" vertex="1">
+                    <mxGeometry x="600" y="110" width="220" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a101" value="config.py → GraphRAGConfig&lt;br&gt;  Neo4j/Milvus/LLM/Embedding配置" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="840" y="110" width="300" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="102" value="🔍 检查系统依赖" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#f57c00;strokeWidth=2;fontSize=12" parent="1" vertex="1">
+                    <mxGeometry x="590" y="190" width="240" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="a102" value="main.py → initialize_system()&lt;br&gt;  Neo4j连接 / Milvus连接 / LLM API" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="850" y="200" width="340" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" value="✅ 初始化核心模块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#0277bd;strokeWidth=2;fontSize=12" parent="1" vertex="1">
+                    <mxGeometry x="590" y="310" width="240" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a103" value="main.py → initialize_system()&lt;br&gt;  ├ GraphDataPreparationModule(uri, user, pwd)&lt;br&gt;  ├ MilvusIndexConstructionModule(host, port, model)&lt;br&gt;  ├ GenerationIntegrationModule(model, temp)&lt;br&gt;  ├ HybridRetrievalModule(config, milvus, data, llm)&lt;br&gt;  ├ GraphRAGRetrieval(config, llm)&lt;br&gt;  └ IntelligentQueryRouter(traditional, graph, llm)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="850" y="290" width="400" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" value="📚 检查知识库状态" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#f57c00;strokeWidth=2;fontSize=12" parent="1" vertex="1">
+                    <mxGeometry x="590" y="400" width="240" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="a104" value="milvus_index_construction.py → has_collection()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="850" y="420" width="340" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="105" value="⚡ 加载已存在知识库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#f57c00;strokeWidth=2;fontSize=11" parent="1" vertex="1">
+                    <mxGeometry x="320" y="480" width="200" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a105" value="milvus_index_construction.py → load_collection()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="310" y="440" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="🔨 构建新知识库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#0277bd;strokeWidth=2;fontSize=12" parent="1" vertex="1">
+                    <mxGeometry x="920" y="480" width="200" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="107" value="✅ 系统就绪" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#0277bd;strokeWidth=2;fontSize=13;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="600" y="1050" width="220" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="200" value="👤 用户输入查询" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#01579b;strokeWidth=2;fontSize=13;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="590" y="1150" width="240" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a200" value="main.py → run_interactive() → while循环" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="850" y="1155" width="320" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="201" value="🔍 特殊命令检查" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#f57c00;strokeWidth=2;fontSize=11" parent="1" vertex="1">
+                    <mxGeometry x="580" y="1240" width="260" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="202" value="🧠 深度查询分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;strokeWidth=2;fontSize=13;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="590" y="1350" width="240" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a202" value="intelligent_query_router.py → IntelligentQueryRouter.analyze_query()&lt;br&gt;  → QueryAnalysis(复杂度, 关系密集度, 推理需求, 实体数)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="860" y="1350" width="440" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="203" value="🤖 LLM智能分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8eaf6;strokeColor=#3f51b5;strokeWidth=2;fontSize=12" parent="1" vertex="1">
+                    <mxGeometry x="600" y="1440" width="220" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a203" value="intelligent_query_router.py → _analyze_with_llm()&lt;br&gt;  4个维度：复杂度/关系密集度/推理需求/实体识别&lt;br&gt;  失败降级 → _rule_based_analysis() 关键词匹配" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="860" y="1435" width="400" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="204" value="🎯 智能路由决策" style="rhombus;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;strokeWidth=2;fontSize=13;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="580" y="1530" width="260" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="a204" value="intelligent_query_router.py → route_query()&lt;br&gt;  复杂度&amp;lt;0.4 且 关系密集度 &amp;lt; 0.4 → hybrid_traditional&lt;br&gt;复杂度 &amp;gt; 0.4 或 关系密集度 &amp;gt; 0.4&amp;nbsp;→ graph_rag&lt;br&gt;  其他 → combined" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="850" y="1530" width="230" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="1005" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="301" target="800">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="301" value="🔍 传统混合检索：&lt;div&gt;Milvus向量搜索+BM25关键词搜索+图键值索引&lt;/div&gt;&lt;div&gt;使用传统检索器，三路召回+RRF融合&lt;br&gt;（保底策略）&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;strokeWidth=2;fontSize=11" parent="1" vertex="1">
+                    <mxGeometry x="210" y="1680" width="229" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="a301" value="hybrid_retrieval.py → HybridRetrievalModule.retrieve()&lt;br&gt;  → RRF融合(k=60)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="10" y="1672.5" width="190" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="1008" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="302" target="900">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="302" value="🕸️ 图RAG检索&lt;br&gt;使用图RAG检索器&lt;br&gt;&lt;div&gt;（高级策略）&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8eaf6;strokeColor=#3f51b5;strokeWidth=2;fontSize=11" parent="1" vertex="1">
+                    <mxGeometry x="600" y="1680" width="200" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a302" value="graph_rag_retrieval.py → GraphRAGRetrieval.retrieve()&lt;br&gt;  → understand_graph_query() 识别查询类型&lt;br&gt;  → multi_hop_traverse() 多跳遍历(max_depth=3)&lt;br&gt;  → extract_subgraph() 子图提取(max_nodes=100)&lt;br&gt;  → reason_over_graph() 图推理+可信度验证" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="1" vertex="1">
+                    <mxGeometry x="820" y="1670" width="230" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="1009" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="303" target="1000">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="303" value="🔄 组合检索策略&lt;div&gt;同时使用两个检索器，结果交替合并&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;strokeWidth=2;fontSize=11" parent="1" vertex="1">
+                    <mxGeometry x="1090" y="1680" width="200" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a303" value="intelligent_query_router.py → _combined_search()&lt;br&gt;  分配配额：traditional_k=top_k//2, graph_k=top_k-traditional_k&lt;br&gt;  并行执行 → Round-robin合并 → 去重排序" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="1300" y="1680" width="260" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="304" value="⬇️ 降级策略" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ff6f00;strokeWidth=2;fontSize=10;dashed=1" parent="1" vertex="1">
+                    <mxGeometry x="240" y="1560" width="260" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="a304" value="graph_rag失败 → 降级到传统混合检索&lt;br&gt;传统混合检索失败 → 系统异常（无更低级降级）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="240" y="1520" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="a305" value="generation_integration.py → generate_adaptive_answer()&lt;br&gt;  或 generate_adaptive_answer_stream() 流式输出&lt;br&gt;  LightRAG风格统一提示词" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="820" y="1840" width="250" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="306" value="📺 流式输出" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0288d1;strokeWidth=2;fontSize=12" parent="1" vertex="1">
+                    <mxGeometry x="610" y="1960" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="307" value="📈 更新路由统计" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#1b5e20;strokeWidth=1;fontSize=10" parent="1" vertex="1">
+                    <mxGeometry x="290" y="1960" width="220" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="a307" value="intelligent_query_router.py → update_route_stats()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="840" y="2035" width="340" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="500" value="📊 图数据处理流程" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#2e7d32;strokeWidth=2;dashed=1;verticalAlign=top;fontSize=12;fontStyle=1;container=1;collapsible=0" parent="1" vertex="1">
+                    <mxGeometry x="800" y="560" width="440" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="501" value="🗄️ Neo4j图数据库&lt;br&gt;菜谱/食材/步骤/关系" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="500" vertex="1">
+                    <mxGeometry x="20" y="30" width="180" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="a501" value="graph_data_preparation.py&lt;br&gt;→ load_graph_data()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="500" vertex="1">
+                    <mxGeometry x="220" y="33" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="502" value="📝 构建结构化菜谱文档" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="500" vertex="1">
+                    <mxGeometry x="20" y="84" width="180" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="a502" value="graph_data_preparation.py&lt;br&gt;→ build_recipe_documents()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="500" vertex="1">
+                    <mxGeometry x="220" y="87" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="503" value="✂️ 智能文档分块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="500" vertex="1">
+                    <mxGeometry x="20" y="138" width="180" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="a503" value="graph_data_preparation.py&lt;br&gt;→ chunk_documents(size=500,overlap=50)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="500" vertex="1">
+                    <mxGeometry x="220" y="141" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="510" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1" parent="500" source="501" target="502" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="511" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1" parent="500" source="502" target="503" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="600" value="🎯 Milvus向量索引" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#1b5e20;strokeWidth=2;fontSize=11" parent="1" vertex="1">
+                    <mxGeometry x="800" y="800" width="220" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a600" value="milvus_index_construction.py → build_vector_index(chunks)&lt;br&gt;  BGE-small-zh-v1.5 → 512维向量 → Milvus集合" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="1040" y="805" width="380" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="601" value="🔑 图键值索引" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#1b5e20;strokeWidth=2;fontSize=11" parent="1" vertex="1">
+                    <mxGeometry x="800" y="880" width="220" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="a601" value="graph_indexing.py → GraphIndexingModule&lt;br&gt;  从Neo4j构建实体/关系键值索引&lt;br&gt;  支持双层检索（实体级+主题级）" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=9;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=4" parent="1" vertex="1">
+                    <mxGeometry x="1040" y="880" width="380" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="700" value="⚙️ 配置管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#388e3c;strokeWidth=2;dashed=1;verticalAlign=top;fontSize=12;fontStyle=1;container=1;collapsible=0" parent="1" vertex="1">
+                    <mxGeometry x="290" y="35" width="260" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="701" value="🎛️ GraphRAGConfig&lt;br&gt;Neo4j/Milvus/LLM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#388e3c;strokeWidth=1;fontSize=10" parent="700" vertex="1">
+                    <mxGeometry x="15" y="35" width="230" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="702" value="🌐 Neo4j: bolt://localhost:7687" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#388e3c;strokeWidth=1;fontSize=10" parent="700" vertex="1">
+                    <mxGeometry x="15" y="80" width="230" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="703" value="🌐 Milvus: localhost:19530" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#388e3c;strokeWidth=1;fontSize=10" parent="700" vertex="1">
+                    <mxGeometry x="15" y="125" width="230" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="800" value="📊 混合检索子流程（保底）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;strokeWidth=2;dashed=1;verticalAlign=top;fontSize=11;fontStyle=1;container=1;collapsible=0" parent="1" vertex="1">
+                    <mxGeometry x="30" y="2100" width="440" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="801" value="📊 Milvus向量检索&lt;br&gt;+ 一跳邻居扩展" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="800" vertex="1">
+                    <mxGeometry x="20" y="30" width="180" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="a801" value="hybrid_retrieval.py → _vector_search_with_expand()&lt;br&gt;  Milvus检索 → Neo4j一跳邻居扩展" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="800" vertex="1">
+                    <mxGeometry x="220" y="30" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="802" value="🔤 BM25检索&lt;br&gt;jieba分词+停用词" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="800" vertex="1">
+                    <mxGeometry x="20" y="84" width="180" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="a802" value="hybrid_retrieval.py → _bm25_search()&lt;br&gt;  BM25Okapi(jieba分词, 停用词过滤)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="800" vertex="1">
+                    <mxGeometry x="220" y="84" width="200" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="803" value="⚖️ RRF融合(k=60)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="800" vertex="1">
+                    <mxGeometry x="20" y="138" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="a803" value="hybrid_retrieval.py → _rrf_merge()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="800" vertex="1">
+                    <mxGeometry x="220" y="138" width="200" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="900" value="🕸️ 图RAG检索子流程（高级）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8eaf6;strokeColor=#3f51b5;strokeWidth=2;dashed=1;verticalAlign=top;fontSize=11;fontStyle=1;container=1;collapsible=0" parent="1" vertex="1">
+                    <mxGeometry x="530" y="2100" width="440" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="901" value="🧠 图查询理解&lt;br&gt;识别查询类型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="900" vertex="1">
+                    <mxGeometry x="20" y="30" width="180" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="a901" value="graph_rag_retrieval.py&lt;br&gt;→ understand_graph_query()&lt;br&gt;  entity_relation/multi_hop/subgraph/path_finding" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="900" vertex="1">
+                    <mxGeometry x="220" y="30" width="200" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="902" value="🔄 多跳遍历&lt;br&gt;max_depth=3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="900" vertex="1">
+                    <mxGeometry x="20" y="84" width="180" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="a902" value="graph_rag_retrieval.py&lt;br&gt;→ multi_hop_traverse()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="900" vertex="1">
+                    <mxGeometry x="220" y="87" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="903" value="🕸️ 子图提取&lt;br&gt;max_nodes=100" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="900" vertex="1">
+                    <mxGeometry x="20" y="138" width="180" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="a903" value="graph_rag_retrieval.py&lt;br&gt;→ extract_subgraph()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="900" vertex="1">
+                    <mxGeometry x="220" y="141" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="904" value="🤔 图推理+可信度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="900" vertex="1">
+                    <mxGeometry x="20" y="188" width="180" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="a904" value="graph_rag_retrieval.py → reason_over_graph()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="900" vertex="1">
+                    <mxGeometry x="220" y="188" width="200" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="1000" value="🔄 组合检索子流程" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;strokeWidth=2;dashed=1;verticalAlign=top;fontSize=11;fontStyle=1;container=1;collapsible=0" parent="1" vertex="1">
+                    <mxGeometry x="1030" y="2100" width="440" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="1001" value="📊 分配检索配额" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="1000" vertex="1">
+                    <mxGeometry x="20" y="30" width="180" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="a1001" value="traditional_k = top_k // 2&lt;br&gt;graph_k = top_k - traditional_k" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="1000" vertex="1">
+                    <mxGeometry x="220" y="33" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="1002" value="⚡ 并行执行检索" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="1000" vertex="1">
+                    <mxGeometry x="20" y="84" width="180" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="a1002" value="传统检索 + 图RAG检索并行" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="1000" vertex="1">
+                    <mxGeometry x="220" y="87" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="1003" value="🔄 Round-robin合并" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" parent="1000" vertex="1">
+                    <mxGeometry x="20" y="138" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="a1003" value="交替添加, 图RAG优先 → 去重排序" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;fontSize=8;fontColor=#5D4037;fontStyle=2;align=left;spacingLeft=3" parent="1000" vertex="1">
+                    <mxGeometry x="220" y="140" width="200" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#0277bd" parent="1" source="100" target="101" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#388e3c" parent="1" source="101" target="102" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" value="依赖正常" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#0277bd;fontColor=#0277bd;fontStyle=1" parent="1" source="102" target="103" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#0277bd" parent="1" source="103" target="104" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" value="存在" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#f57c00;fontColor=#f57c00;fontStyle=1" parent="1" source="104" target="105" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" value="不存在" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#0277bd;fontColor=#0277bd;fontStyle=1" parent="1" source="104" target="106" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#0277bd" parent="1" source="106" target="500" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#0277bd" parent="1" source="500" target="600" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#0277bd" parent="1" source="600" target="601" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#0277bd" parent="1" source="601" target="107" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#f57c00" parent="1" source="105" target="107" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e20" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#01579b" parent="1" source="107" target="200" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e21" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#01579b" parent="1" source="200" target="201" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e22" value="普通查询" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#4a148c;fontColor=#4a148c;fontStyle=1" parent="1" source="201" target="202" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e23" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#3f51b5" parent="1" source="202" target="203" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e24" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#4a148c" parent="1" source="203" target="204" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e25" value="简单查询&lt;br&gt;复杂度&lt;0.4" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#e65100;fontColor=#e65100;fontStyle=1" parent="1" source="204" target="301" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e26" value="复杂推理&lt;br&gt;关系密集&gt;0.7" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#3f51b5;fontColor=#3f51b5;fontStyle=1" parent="1" source="204" target="302" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e27" value="中等复杂" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#7b1fa2;fontColor=#7b1fa2;fontStyle=1" parent="1" source="204" target="303" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e28" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#880e4f" parent="1" source="301" target="305" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e29" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#880e4f" parent="1" source="302" target="305" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e30" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#880e4f" parent="1" source="303" target="305" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e31" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#ff6f00;dashed=1" parent="1" source="302" target="304" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e32" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#ff6f00;dashed=1" parent="1" source="303" target="304" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e33" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#ff6f00;dashed=1" parent="1" source="304" target="301" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e34" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#0288d1" parent="1" source="305" target="306" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e35" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#1b5e20" parent="1" source="306" target="307" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e36" value="" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#01579b" parent="1" source="307" target="200" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="305" value="🎨 生成回答" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#880e4f;strokeWidth=2;fontSize=13;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="590" y="1830" width="220" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="1012" value="图键值索引 和 图RAG索引 区别" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;strokeWidth=2;dashed=1;verticalAlign=top;fontSize=11;fontStyle=1;container=1;collapsible=0" vertex="1" parent="1">
+                    <mxGeometry x="1300" y="1790" width="440" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="1013" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;图键值索引&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;div style=&quot;&quot;&gt;启动时把图数据库 Neo4j 里的节点和边&lt;/div&gt;&lt;div style=&quot;&quot;&gt;提前转换成内存中的键值对，&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;纯字典查找，O(1)速度&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" vertex="1" parent="1012">
+                    <mxGeometry x="10" y="30" width="210" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="1015" value="图RAG检索&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;只在内存中缓存实体和关系的元信息&lt;/div&gt;&lt;div&gt;（不做KV转换），&lt;/div&gt;&lt;div&gt;在 Neo4j 上实时执行 Cypher 遍历查询，&lt;/div&gt;&lt;div&gt;只能找到预先建好的索引键能匹配到的内容&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;strokeWidth=1;fontSize=10" vertex="1" parent="1012">
+                    <mxGeometry x="230" y="30" width="200" height="140" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
