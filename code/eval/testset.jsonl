@@ -1,0 +1,63 @@
+{"id": "q_single_001", "query": "冰粉怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["冰粉"], "notes": "菜系=豫菜 难度=2.0"}
+{"id": "q_single_002", "query": "咖啡椰奶冻怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["咖啡椰奶冻"], "notes": "菜系=? 难度=4.0"}
+{"id": "q_single_003", "query": "咖喱肥牛怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["咖喱肥牛"], "notes": "菜系=? 难度=4.0"}
+{"id": "q_single_004", "query": "姜炒鸡怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["姜炒鸡"], "notes": "菜系=湘菜 难度=3.0"}
+{"id": "q_single_005", "query": "宫保鸡丁怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["宫保鸡丁"], "notes": "菜系=川菜 难度=4.0"}
+{"id": "q_single_006", "query": "小米辣炒肉怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["小米辣炒肉"], "notes": "菜系=川菜 难度=3.0"}
+{"id": "q_single_007", "query": "手撕包菜怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["手撕包菜"], "notes": "菜系=湘菜 难度=3.0"}
+{"id": "q_single_008", "query": "拔丝土豆怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["拔丝土豆"], "notes": "菜系=鲁菜 难度=3.0"}
+{"id": "q_single_009", "query": "排骨苦瓜汤怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["排骨苦瓜汤"], "notes": "菜系=? 难度=4.0"}
+{"id": "q_single_010", "query": "朱雀汤怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["朱雀汤"], "notes": "菜系=豫东菜 难度=1.0"}
+{"id": "q_single_011", "query": "水煮鱼怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["水煮鱼"], "notes": "菜系=川菜 难度=4.0"}
+{"id": "q_single_012", "query": "油酥怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["油酥"], "notes": "菜系=? 难度=2.0"}
+{"id": "q_single_013", "query": "洋葱炒猪肉怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["洋葱炒猪肉"], "notes": "菜系=? 难度=3.0"}
+{"id": "q_single_014", "query": "清蒸鲈鱼怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["清蒸鲈鱼"], "notes": "菜系=粤菜 难度=3.0"}
+{"id": "q_single_015", "query": "炒茄子怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["炒茄子"], "notes": "菜系=? 难度=3.0"}
+{"id": "q_single_016", "query": "烤鸡翅怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["烤鸡翅"], "notes": "菜系=? 难度=3.0"}
+{"id": "q_single_017", "query": "热干面怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["热干面"], "notes": "菜系=湖北菜 难度=3.0"}
+{"id": "q_single_018", "query": "猪肉烩酸菜怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["猪肉烩酸菜"], "notes": "菜系=东北菜 难度=5.0"}
+{"id": "q_single_019", "query": "电饭煲三文鱼炊饭怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["电饭煲三文鱼炊饭"], "notes": "菜系=? 难度=2.0"}
+{"id": "q_single_020", "query": "番茄红酱怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["番茄红酱"], "notes": "菜系=? 难度=4.0"}
+{"id": "q_single_021", "query": "白灼菜心怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["白灼菜心"], "notes": "菜系=粤菜 难度=2.0"}
+{"id": "q_single_022", "query": "白灼虾怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["白灼虾"], "notes": "菜系=粤菜 难度=2.0"}
+{"id": "q_single_023", "query": "简易版炒糖色怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["简易版炒糖色"], "notes": "菜系=? 难度=4.0"}
+{"id": "q_single_024", "query": "糖拌西红柿怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["糖拌西红柿"], "notes": "菜系=? 难度=2.0"}
+{"id": "q_single_025", "query": "芥末黄油罗氏虾怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["芥末黄油罗氏虾"], "notes": "菜系=? 难度=3.0"}
+{"id": "q_single_026", "query": "荷兰豆炒腊肠怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["荷兰豆炒腊肠"], "notes": "菜系=? 难度=2.0"}
+{"id": "q_single_027", "query": "萝卜炖羊排怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["萝卜炖羊排"], "notes": "菜系=西北菜 难度=4.0"}
+{"id": "q_single_028", "query": "葱油桂鱼怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["葱油桂鱼"], "notes": "菜系=粤菜 难度=4.0"}
+{"id": "q_single_029", "query": "蒜香酱油怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["蒜香酱油"], "notes": "菜系=? 难度=2.0"}
+{"id": "q_single_030", "query": "蒲烧茄子怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["蒲烧茄子"], "notes": "菜系=? 难度=3.0"}
+{"id": "q_single_031", "query": "蛋包饭怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["蛋包饭"], "notes": "菜系=日式 难度=3.0"}
+{"id": "q_single_032", "query": "西红柿土豆炖牛肉怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["西红柿土豆炖牛肉"], "notes": "菜系=? 难度=4.0"}
+{"id": "q_single_033", "query": "豆豉鲮鱼油麦菜怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["豆豉鲮鱼油麦菜"], "notes": "菜系=粤菜 难度=2.0"}
+{"id": "q_single_034", "query": "速冻水饺怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["速冻水饺"], "notes": "菜系=? 难度=1.0"}
+{"id": "q_single_035", "query": "酸梅汤（半成品加工）怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["酸梅汤（半成品加工）"], "notes": "菜系=? 难度=1.0"}
+{"id": "q_single_036", "query": "香干芹菜炒肉怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["香干芹菜炒肉"], "notes": "菜系=? 难度=3.0"}
+{"id": "q_single_037", "query": "魔芋蛋糕怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["魔芋蛋糕"], "notes": "菜系=? 难度=4.0"}
+{"id": "q_single_038", "query": "鱼香肉丝怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["鱼香肉丝"], "notes": "菜系=川菜 难度=4.0"}
+{"id": "q_single_039", "query": "鲤鱼炖白菜怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["鲤鱼炖白菜"], "notes": "菜系=川菜 难度=3.0"}
+{"id": "q_single_040", "query": "鸡蛋三明治怎么做", "query_type": "single_recipe", "relevant_recipe_names": ["鸡蛋三明治"], "notes": "菜系=? 难度=2.0"}
+{"id": "q_ingr_001", "query": "有哪些用味精做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["红烧鱼", "冷吃兔", "商芝肉", "小酥肉", "黄焖鸡", "口水鸡", "回锅肉", "猪皮冻", "老式锅包肉", "香煎五花肉", "鱼香茄子", "金针菇汤", "炒河粉", "豆角焖面", "上汤娃娃菜"], "notes": "该食材共 15 道菜"}
+{"id": "q_ingr_002", "query": "有哪些用醋做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["红烧鱼", "商芝肉", "糖醋里脊", "鱼香肉丝", "口水鸡", "鱼香茄子", "玉米排骨汤", "肉蛋盖饭", "麻辣减脂荞麦面", "凉粉", "凉拌油麦菜", "凉拌豆腐", "凉拌金针菇", "凉拌黄瓜", "凉拌木耳"], "notes": "该食材共 15 道菜"}
+{"id": "q_ingr_003", "query": "有哪些用小米椒做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["红烧鱼", "油泼辣子", "孜然牛肉", "小炒肉", "农家一碗香", "姜炒鸡", "小炒黄牛肉", "梅菜扣肉", "老妈蹄花", "酱排骨", "香辣鸡爪煲", "麻婆豆腐", "素炒豆角", "金针菇日本豆腐煲", "烤茄子"], "notes": "该食材共 15 道菜"}
+{"id": "q_ingr_004", "query": "有哪些用食盐做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["茶叶蛋", "炸串酱料", "草莓冰淇淋", "山西过油肉", "番茄红酱", "糖醋里脊", "蒜苔炒肉末", "麻婆豆腐", "金针菇汤", "陈皮排骨汤", "热干面", "炒凉粉", "炒意大利面", "茄子肉煎饼", "炒青菜"], "notes": "该食材共 15 道菜"}
+{"id": "q_ingr_005", "query": "有哪些用五花肉做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["红烧鲤鱼", "小炒肉", "白菜猪肉炖粉条", "粉蒸肉", "回锅肉", "徽派红烧肉", "梅菜扣肉", "湘祁米夫鸭", "麻婆豆腐", "河南蒸面条", "豆角焖面", "干锅花菜", "手撕包菜", "榄菜肉末四季豆"], "notes": "该食材共 14 道菜"}
+{"id": "q_ingr_006", "query": "有哪些用桂皮做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["小龙虾", "烤鱼", "鲤鱼炖白菜", "鳊鱼炖豆腐", "茶叶蛋", "乡村啤酒鸭", "冷吃兔", "带把肘子", "土豆炖排骨", "广式萝卜牛腩", "枝竹羊腩煲", "湖南家常红烧肉", "红烧猪蹄", "酱牛肉"], "notes": "该食材共 14 道菜"}
+{"id": "q_ingr_007", "query": "有哪些用面粉做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["糖醋鲤鱼", "微波炉蛋糕", "油酥", "红柚蛋糕", "小酥肉", "椒盐排条", "奶酪培根通心粉", "奶油蘑菇汤", "手工水饺", "韭菜盒子", "中式馅饼", "烙饼", "芝麻烧饼", "红烧茄子"], "notes": "该食材共 14 道菜"}
+{"id": "q_ingr_008", "query": "有哪些用黄油做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["芥末黄油罗氏虾", "黄油煎虾", "微波炉蛋糕", "燕麦鸡蛋饼", "美式炒蛋", "鸡蛋三明治", "无厨师机蜂蜜面包", "玛格丽特饼干", "芋泥雪媚娘", "奶酪培根通心粉", "牛排", "芥末罗氏虾", "空气炸锅羊排", "奶油蘑菇汤"], "notes": "该食材共 14 道菜"}
+{"id": "q_ingr_009", "query": "有哪些用胡萝卜做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["番茄红酱", "鱼香肉丝", "咖喱肥牛", "老式锅包肉", "罗宋汤", "玉米排骨汤", "蛋包饭", "蛋炒饭", "中式馅饼", "扬州炒饭", "日式咖喱饭", "韩式拌饭", "松仁玉米", "包菜炒鸡蛋粉丝"], "notes": "该食材共 14 道菜"}
+{"id": "q_ingr_010", "query": "有哪些用蒜瓣做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["红烧鱼", "红烧鱼头", "红烧鲤鱼", "杀猪菜", "番茄红酱", "蒜苔炒肉末", "干煸仔鸡", "广式萝卜牛腩", "枝竹羊腩煲", "炒河粉", "凉拌木耳", "包菜炒鸡蛋粉丝", "干锅花菜"], "notes": "该食材共 13 道菜"}
+{"id": "q_ingr_011", "query": "有哪些用生姜做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["干煎阿根廷红虾", "乡村啤酒鸭", "可乐鸡翅", "水煮肉片", "辣椒炒肉", "卤菜", "回锅肉", "姜炒鸡", "羊排焖面", "麻婆豆腐", "皮蛋瘦肉粥", "排骨苦瓜汤", "玉米排骨汤"], "notes": "该食材共 13 道菜"}
+{"id": "q_ingr_012", "query": "有哪些用香葱做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["清蒸鲈鱼", "温泉蛋", "血浆鸭", "勾芡香菇汤", "昂刺鱼豆腐汤", "玉米排骨汤", "蛋炒饭", "微波炉腊肠煲仔饭", "炒凉粉", "炒茄子", "红烧冬瓜", "蚝油三鲜菇", "西红柿豆腐汤羹"], "notes": "该食材共 13 道菜"}
+{"id": "q_ingr_013", "query": "有哪些用五香粉做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["炸串酱料", "油泼辣子", "猪肉烩酸菜", "台式卤肉饭", "小炒鸡肝", "徽派红烧肉", "梅菜扣肉", "糖醋排骨", "酱排骨", "香辣鸡爪煲", "炒馍", "蒸卤面", "陕北熬豆角"], "notes": "该食材共 13 道菜"}
+{"id": "q_ingr_014", "query": "有哪些用白胡椒粉做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["水煮鱼", "烤鱼", "糖醋里脊", "肉饼炖蛋", "蚂蚁上树", "黄焖鸡", "台式卤肉饭", "湘祁米夫鸭", "老妈蹄花", "西红柿牛腩", "羊肉汤", "西红柿鸡蛋挂面"], "notes": "该食材共 12 道菜"}
+{"id": "q_ingr_015", "query": "有哪些用香醋做的菜？", "query_type": "ingredient", "relevant_recipe_names": ["白灼虾", "凉拌鸡丝", "宫保鸡丁", "糖醋排骨", "老妈蹄花", "荔枝肉", "醉排骨", "凉皮", "酸辣蕨根粉", "油醋爆蛋", "手撕包菜", "虎皮青椒"], "notes": "该食材共 12 道菜"}
+{"id": "q_cat_001", "query": "有哪些荤菜？", "query_type": "category", "relevant_recipe_names": ["乡村啤酒鸭", "冷吃兔", "可乐鸡翅", "咕噜肉", "商芝肉", "孜然牛肉", "小炒肉", "小米辣炒肉", "小酥肉", "尖椒炒牛肉", "山西过油肉", "带把肘子", "意式烤鸡", "杀猪菜", "椒盐排条", "水煮肉片", "洋葱炒猪肉", "烤鸡翅", "猪肉烩酸菜", "甜辣烤全翅", "番茄红酱", "白菜猪肉炖粉条", "粉蒸肉", "糖醋里脊", "肉饼炖蛋", "萝卜炖羊排", "蒜苔炒肉末", "虎皮肘子", "蚂蚁上树", "辣椒炒肉", "香干肉丝", "鱼香肉丝", "麻辣香锅", "黄焖鸡", "黄瓜炒肉", "农家一碗香", "冬瓜酿肉", "凉拌鸡丝", "卤菜", "口水鸡", "台式卤肉饭", "咖喱肥牛", "啤酒鸭", "回锅肉", "土豆炖排骨", "奶酪培根通心粉", "姜炒鸡", "姜葱捞鸡", "宫保鸡丁", "小炒鸡肝", "小炒黄牛肉", "尖叫牛蛙", "巴基斯坦牛肉咖喱", "干煸仔鸡", "广式萝卜牛腩", "徽派红烧肉", "新疆大盘鸡", "无骨鸡爪", "枝竹羊腩煲", "柱候牛腩", "梅菜扣肉", "水煮牛肉", "清蒸鳜鱼", "湖南家常红烧肉", "湘祁米夫鸭", "牛排", "瘦肉土豆片", "糖醋排骨", "红烧猪蹄", "南派红烧肉", "简易红烧肉", "羊排焖面", "老妈蹄花", "老式锅包肉", "芥末罗氏虾", "茭白炒肉", "荔枝肉", "荷兰豆炒腊肠", "血浆鸭", "西红柿土豆炖牛肉", "西红柿牛腩", "豆豉鲮鱼油麦菜", "豉汁蒸白鱔", "贵州辣子鸡", "酱排骨", "酱牛肉", "醉排骨", "青椒土豆炒肉", "香干芹菜炒肉", "香煎五花肉", "香菇滑鸡", "香辣鸡爪煲", "鱼香茄子", "麻婆豆腐", "黑椒牛柳", "黔式腊肠娃娃菜"], "notes": "该分类共 96 道菜"}
+{"id": "q_cat_002", "query": "有哪些素菜？", "query_type": "category", "relevant_recipe_names": ["凉拌油麦菜", "凉拌豆腐", "凉拌金针菇", "凉拌黄瓜", "地三鲜", "松仁玉米", "水油焖蔬菜", "油醋爆蛋", "清炒花菜", "清蒸南瓜", "炒茄子", "炒青菜", "素炒豆角", "红烧茄子", "脆皮豆腐", "茄子炖土豆", "葱煎豆腐", "蒜蓉西兰花", "蒲烧茄子", "蚝油生菜", "西红柿炒鸡蛋", "酸辣土豆丝", "金针菇日本豆腐煲", "陕北熬豆角", "雷椒皮蛋", "鸡蛋火腿炒黄瓜", "凉拌木耳", "凉拌莴笋", "包菜炒鸡蛋粉丝", "小炒藕丁", "干锅花菜", "手撕包菜", "拔丝土豆", "椒盐玉米", "榄菜肉末四季豆", "洋葱炒鸡蛋", "炒滑蛋", "烤茄子", "白灼菜心", "糖拌西红柿", "红烧冬瓜", "芹菜拌茶树菇", "莴笋叶煎饼", "菠菜炒鸡蛋", "蒜蓉空心菜", "虎皮青椒", "蚝油三鲜菇", "西红柿豆腐汤羹", "西葫芦炒鸡蛋", "话梅煮毛豆", "微波炉鸡蛋羹", "蒸箱鸡蛋羹", "鸡蛋羹"], "notes": "该分类共 53 道菜"}
+{"id": "q_cat_003", "query": "有哪些主食？", "query_type": "category", "relevant_recipe_names": ["皮蛋瘦肉粥", "手工水饺", "汤面", "炒年糕", "炒方便面", "炒河粉", "炒馍", "炸酱面", "热干面", "煮泡面加蛋", "老干妈拌面", "肉蛋盖饭", "葱油拌面", "蒸卤面", "蛋包饭", "蛋炒饭", "螺蛳粉", "醪糟小汤圆", "韭菜盒子", "麻油拌面", "麻辣减脂荞麦面", "中式馅饼", "凉粉", "基础牛奶面包", "微波炉腊肠煲仔饭", "意式肉酱面", "扬州炒饭", "披萨饼皮", "日式咖喱饭", "日式肥牛丼饭", "河南蒸面条", "火腿饭团", "炒凉粉", "炒意大利面", "烙饼", "芝麻烧饼", "电饭煲三文鱼炊饭", "空气炸锅照烧鸡饭", "煮锅蒸米饭", "电饭煲蒸米饭", "老友猪肉粉", "茄子肉煎饼", "西红柿鸡蛋挂面", "豆角焖面", "酱拌荞麦面", "韩式拌饭", "鲣鱼海苔玉米饭"], "notes": "该分类共 47 道菜"}
+{"id": "q_cat_004", "query": "有哪些水产？", "query_type": "category", "relevant_recipe_names": ["咖喱炒蟹", "微波葱姜黑鳕鱼", "水煮鱼", "清蒸生蚝", "红烧鱼", "红烧鱼头", "红烧鲤鱼", "小龙虾", "干煎阿根廷红虾", "油焖大虾", "烤鱼", "清蒸鲈鱼", "白灼虾", "糖醋鲤鱼", "芥末黄油罗氏虾", "葱油桂鱼", "葱烧海参", "蒜蓉虾", "蒜香黄油虾", "蛏抱蛋", "香煎翘嘴鱼", "鲤鱼炖白菜", "鳊鱼炖豆腐", "黄油煎虾"], "notes": "该分类共 24 道菜"}
+{"id": "q_cat_005", "query": "有哪些早餐？", "query_type": "category", "relevant_recipe_names": ["吐司果酱", "太阳蛋", "完美水煮蛋", "微波炉荷包蛋", "微波炉蛋糕", "手抓饼", "桂圆红枣粥", "水煮玉米", "溏心蛋", "煎饺", "燕麦鸡蛋饼", "牛奶燕麦", "空气炸锅面包片", "美式炒蛋", "茶叶蛋", "蒸水蛋", "蒸花卷", "蛋煎糍粑", "金枪鱼酱三明治", "鸡蛋三明治", "温泉蛋", "苏格兰蛋"], "notes": "该分类共 22 道菜"}
+{"id": "q_cat_006", "query": "有哪些饮料？", "query_type": "category", "relevant_recipe_names": ["B52轰炸机", "Mojito莫吉托", "冬瓜茶", "可乐桶", "奶茶", "杨枝甘露", "酸梅汤（半成品加工）", "长岛冰茶", "冰粉", "奇异果菠菜特调", "柠檬水", "泰国手标红茶", "海边落日", "百香果橙子特调", "砂糖椰子冰沙", "耙耙柑茶", "菠萝咖啡特调", "酒酿（醪糟）", "酸梅汤", "金汤力", "金菲士"], "notes": "该分类共 21 道菜"}
+{"id": "q_cat_007", "query": "有哪些汤类？", "query_type": "category", "relevant_recipe_names": ["奶油蘑菇汤", "小米粥", "生汆丸子汤", "番茄牛肉蛋花汤", "米粥", "紫菜蛋花汤", "罗宋汤", "腊八粥", "西红柿鸡蛋汤", "金针菇汤", "陈皮排骨汤", "勾芡香菇汤", "排骨苦瓜汤", "昂刺鱼豆腐汤", "朱雀汤", "玉米排骨汤", "羊肉汤", "菌菇炖乳鸽", "银耳莲子粥", "陈皮排骨汤"], "notes": "该分类共 20 道菜"}
+{"id": "q_cat_008", "query": "有哪些甜品？", "query_type": "category", "relevant_recipe_names": ["反沙芋头", "咖啡椰奶冻", "奥利奥冰淇淋", "戚风蛋糕", "提拉米苏", "无厨师机蜂蜜面包", "炸鲜奶", "烤蛋挞", "玛格丽特饼干", "红柚蛋糕", "芋泥雪媚娘", "英式司康", "草莓冰淇淋", "酸奶意式奶冻", "雪花酥", "魔芋蛋糕", "龟苓膏"], "notes": "该分类共 17 道菜"}

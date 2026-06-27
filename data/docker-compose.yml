@@ -60,6 +60,22 @@ services:
       - "etcd"
       - "minio"
 
+  # P1：Redis 多级缓存（答案/语义/路由/embedding）。系统对 Redis 有优雅降级，
+  # 即便不启动此容器，问答照常工作（仅无缓存加速）。
+  redis:
+    container_name: graph-rag-redis
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 networks:
   default:
     name: milvus

@@ -6,6 +6,7 @@
 
 import json
 import logging
+import asyncio
 from typing import List, Dict, Tuple, Any, Optional
 from dataclasses import dataclass
 
@@ -697,24 +698,38 @@ class HybridRetrievalModule:
 
     def hybrid_search(self, query: str, top_k: int = 5) -> List[Document]:
         """
-        混合检索：三路召回（图键值双层 + 向量 + BM25）→ RRF 融合
+        混合检索（同步）：三路召回（图键值双层 + 向量 + BM25）→ RRF 融合。
+        三路串行；异步版见 hybrid_search_async（三路并发）。
         """
         logger.info(f"开始混合检索（dual + vector + bm25, RRF k={_RRF_K}）: {query}")
-
-        # 每路给 RRF 留够候选空间，否则三路各自前 top_k 容易没交集，融合退化
         candidate_k = max(top_k * 2, 10)
-
         dual_docs = self.dual_level_retrieval(query, candidate_k)
         vector_docs = self.vector_search_enhanced(query, candidate_k)
         bm25_docs = self.bm25_search(query, candidate_k)
+        return self._assemble_hybrid(dual_docs, vector_docs, bm25_docs, top_k)
 
-        # 标记每路来源（dual_level 内部会写 search_type 但不一定写 search_method）
+    async def hybrid_search_async(self, query: str, top_k: int = 5) -> List[Document]:
+        """
+        P4 异步混合检索：三路【并发】召回 → RRF 融合。
+        三路（dual/vector/bm25）原本串行，延迟≈三者之和；asyncio.gather 后≈最慢一路。
+        底层仍是同步实现，用 asyncio.to_thread 卸到线程池并发跑。
+        """
+        logger.info(f"开始混合检索(async, 三路并发): {query}")
+        candidate_k = max(top_k * 2, 10)
+        dual_docs, vector_docs, bm25_docs = await asyncio.gather(
+            asyncio.to_thread(self.dual_level_retrieval, query, candidate_k),
+            asyncio.to_thread(self.vector_search_enhanced, query, candidate_k),
+            asyncio.to_thread(self.bm25_search, query, candidate_k),
+        )
+        return self._assemble_hybrid(dual_docs, vector_docs, bm25_docs, top_k)
+
+    def _assemble_hybrid(self, dual_docs, vector_docs, bm25_docs, top_k) -> List[Document]:
+        """三路结果标记来源 + RRF 融合（同步/异步共用）。"""
         for d in dual_docs:
             d.metadata.setdefault("search_method", "dual_level")
         for d in vector_docs:
             d.metadata["search_method"] = "vector"
         # bm25_search 内部已写 search_method=bm25
-
         final_docs = self._rrf_merge(
             ranked_lists=[
                 ("dual_level", dual_docs),
@@ -723,7 +738,6 @@ class HybridRetrievalModule:
             ],
             top_k=top_k,
         )
-
         logger.info(
             f"RRF 融合完成：dual={len(dual_docs)} vector={len(vector_docs)} "
             f"bm25={len(bm25_docs)} → 最终 {len(final_docs)} 个文档"

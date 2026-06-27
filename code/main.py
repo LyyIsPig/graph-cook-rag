@@ -6,11 +6,19 @@
 import os
 import sys
 import time
+import asyncio
 import logging
 from typing import List, Optional
 
 os.environ['HF_HUB_OFFLINE'] = '1'
 os.environ['TRANSFORMERS_OFFLINE'] = '1'
+
+# Windows 控制台默认 GBK，遇 emoji(✅/❓) 会 UnicodeEncodeError；强制 UTF-8 避免崩溃
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
 
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -31,9 +39,27 @@ from rag_modules import (
 from rag_modules.hybrid_retrieval import HybridRetrievalModule
 from rag_modules.graph_rag_retrieval import GraphRAGRetrieval
 from rag_modules.intelligent_query_router import IntelligentQueryRouter, QueryAnalysis
+from cache import RedisClient, CacheManager
+from core.metrics import (
+    CACHE_HITS, ROUTE_STRATEGY, REFUSALS, LLM_CALLS, stage_timer,
+)
+
+
+def _doc_source(doc) -> dict:
+    """把检索 Document 压成精简溯源 dict（API/缓存 payload 共用）。"""
+    md = getattr(doc, "metadata", {}) or {}
+    return {
+        "recipe_name": md.get("recipe_name") or md.get("name") or "未知菜品",
+        "search_type": md.get("search_type") or md.get("search_method") or md.get("route_strategy"),
+        "score": md.get("final_score", md.get("relevance_score", md.get("score", 0.0))),
+    }
 
 # 加载环境变量
 load_dotenv()
+
+# 拒答话术（P2-3 防幻觉）：向量低分直拒 / 提示词拒答 两处统一用这句
+REFUSAL_MSG = "抱歉，我的菜谱库里没有这道菜的相关信息，无法回答。"
+
 
 class AdvancedGraphRAGSystem:
     """
@@ -59,6 +85,9 @@ class AdvancedGraphRAGSystem:
         self.traditional_retrieval = None
         self.graph_rag_retrieval = None
         self.query_router = None
+
+        # P1 Redis 多级缓存
+        self.cache = None
         
         # 系统状态
         self.system_ready = False
@@ -86,13 +115,28 @@ class AdvancedGraphRAGSystem:
                 dimension=self.config.milvus_dimension,
                 model_name=self.config.embedding_model
             )
+
+            # 2b. P1 Redis 多级缓存（语义缓存的向量化复用 Milvus 的 BGE 模型）
+            print("初始化 Redis 缓存...")
+            _rc = RedisClient(
+                self.config.redis_host, self.config.redis_port,
+                self.config.redis_db, self.config.redis_password,
+            )
+            self.cache = CacheManager(
+                _rc,
+                lambda q: self.index_module.embeddings.embed_query(q),
+                self.config,
+            )
+            print(f"✅ 缓存就绪 (enabled={self.config.cache_enabled}, redis={_rc.available})")
             
-            # 3. 生成模块
+            # 3. 生成模块（P0：注入统一配置，LLM = 智谱 GLM）
             print("初始化生成模块...")
             self.generation_module = GenerationIntegrationModule(
                 model_name=self.config.llm_model,
                 temperature=self.config.temperature,
-                max_tokens=self.config.max_tokens
+                max_tokens=self.config.max_tokens,
+                api_key=self.config.llm_api_key,
+                base_url=self.config.llm_base_url,
             )
             
             # 4. 传统混合检索模块
@@ -117,7 +161,8 @@ class AdvancedGraphRAGSystem:
                 traditional_retrieval=self.traditional_retrieval,
                 graph_rag_retrieval=self.graph_rag_retrieval,
                 llm_client=self.generation_module.client,
-                config=self.config
+                config=self.config,
+                cache=self.cache,
             )
             
             print("✅ 高级图RAG系统初始化完成！")
@@ -231,15 +276,58 @@ class AdvancedGraphRAGSystem:
             categories = list(stats['categories'].keys())[:10]
             print(f"   🏷️ 主要分类: {', '.join(categories)}")
     
+    def check_answerable(self, question: str, threshold: float = 0.45):
+        """
+        拒答闸门（P2-3 防幻觉）：向量相似度做快速预筛。
+        - score < threshold（明显无关/跨域）→ 直接拒答，省一次生成且必然拒答；
+        - 边界语义情况（如"北京烤鸭"命中"啤酒鸭"，分数偏高）→ 放行，交给生成层拒答提示词处理。
+        fail-open：检查本身异常时放行，不阻塞主流程。
+        """
+        try:
+            res = self.index_module.similarity_search(question, k=1)
+        except Exception as e:
+            logger.warning(f"answerable 检查异常，fail-open 放行: {e}")
+            return True, "check_error", 0.0
+        if not res:
+            return False, "no_retrieval", 0.0
+        score = float(res[0].get("score", 0.0))
+        if score < threshold:
+            return False, "vector_low", score
+        return True, "ok", score
+
     def ask_question_with_routing(self, question: str, stream: bool = False, explain_routing: bool = False):
         """
         智能问答：自动选择最佳检索策略
         """
         if not self.system_ready:
             raise ValueError("系统未就绪，请先构建知识库")
-            
+
         print(f"\n❓ 用户问题: {question}")
-        
+
+        # P1 精确缓存(L1/L2)：命中直接返回。置于拒答闸门【之前】——
+        # 缓存里的答案都是此前已通过闸门、成功生成的，重跑闸门是纯浪费（闸门本身 ~300ms 向量查）。
+        if self.cache is not None and not stream:
+            cached = self.cache.get_answer(question)
+            if cached is not None:
+                payload, layer = cached
+                print(f"💾 精确缓存命中({layer})，跳过闸门+检索+生成")
+                return payload.get("answer", ""), None
+
+        # 拒答闸门（P2-3）：明显无关/不存在 → 直接拒答，防幻觉
+        answerable, reason, conf = self.check_answerable(question)
+        if not answerable:
+            print(f"🚫 拒答({reason}, score={conf:.2f})")
+            return REFUSAL_MSG, None
+
+        # P1 语义缓存(L3)：闸门通过后，找相似历史 query 复用答案（留闸门后更安全，避免把
+        # 本该拒答的近义 query 误命中）。
+        if self.cache is not None and not stream:
+            sem = self.cache.get_semantic_answer(question)
+            if sem:
+                payload, layer = sem[0], f"L3({sem[1]:.2f})"
+                print(f"💾 语义缓存命中({layer})，跳过检索+生成")
+                return payload.get("answer", ""), None
+
         # 显示路由决策解释（可选）
         if explain_routing:
             explanation = self.query_router.explain_routing_decision(question)
@@ -298,7 +386,17 @@ class AdvancedGraphRAGSystem:
             # 5. 性能统计
             end_time = time.time()
             print(f"\n⏱️ 问答完成，耗时: {end_time - start_time:.2f}秒")
-            
+
+            # P1 缓存落库：答案精确缓存(L1/L2) + 语义登记(L3)（仅非流式）
+            if self.cache is not None and not stream:
+                _payload = {
+                    "answer": result,
+                    "strategy": analysis.recommended_strategy.value if analysis else None,
+                    "latency_ms": round((end_time - start_time) * 1000, 1),
+                }
+                self.cache.set_answer(question, _payload)
+                self.cache.register_semantic(question, _payload)
+
             return result, analysis
             
         except Exception as e:
@@ -309,6 +407,77 @@ class AdvancedGraphRAGSystem:
     
 
     
+    async def ask_async(self, question: str, top_k: int = None) -> dict:
+        """P4 异步问答（API 专用）。
+        顺序与同步版一致：精确缓存(前置) → 拒答闸门 → 语义缓存 → 路由+检索 → 生成。
+        阻塞调用（闸门/Milvus、analyze LLM、生成 LLM）全部让出事件循环（to_thread / AsyncOpenAI），
+        多请求可并发。返回 dict 含 answer/strategy/sources/latency_ms/cache_hit。"""
+        if not self.system_ready:
+            raise ValueError("系统未就绪，请先构建知识库")
+        top_k = top_k or self.config.top_k
+        t0 = time.time()
+
+        # 1) 精确缓存(L1/L2)：前置，命中免跑闸门
+        if self.cache is not None:
+            cached = self.cache.get_answer(question)
+            if cached is not None:
+                payload, layer = cached
+                CACHE_HITS.labels(layer=layer.split("(")[0]).inc()
+                return {**payload, "cache_hit": layer, "latency_ms": round((time.time() - t0) * 1000, 1)}
+
+        # 2) 拒答闸门（Milvus 向量查，阻塞 → to_thread）
+        tg = time.time()
+        with stage_timer("gate"):
+            answerable, reason, conf = await asyncio.to_thread(self.check_answerable, question)
+        gate_ms = (time.time() - tg) * 1000
+        if not answerable:
+            REFUSALS.labels(reason=reason).inc()
+            return {"answer": REFUSAL_MSG, "refused": True, "reason": reason,
+                    "confidence": conf, "sources": [], "cache_hit": None,
+                    "stages": {"gate_ms": round(gate_ms, 1)},
+                    "latency_ms": round((time.time() - t0) * 1000, 1)}
+
+        # 3) 语义缓存(L3)
+        if self.cache is not None:
+            sem = self.cache.get_semantic_answer(question)
+            if sem:
+                payload, sim, _ = sem
+                CACHE_HITS.labels(layer="L3").inc()
+                return {**payload, "cache_hit": f"L3({sim:.2f})",
+                        "latency_ms": round((time.time() - t0) * 1000, 1)}
+
+        # 4) 路由 + 检索（analyze LLM / 三路检索并发）
+        CACHE_HITS.labels(layer="MISS").inc()
+        tr = time.time()
+        with stage_timer("retrieve"):
+            relevant_docs, analysis = await self.query_router.route_query_async(question, top_k)
+        retrieve_ms = (time.time() - tr) * 1000
+        ROUTE_STRATEGY.labels(strategy=analysis.recommended_strategy.value).inc()
+        if not relevant_docs:
+            return {"answer": "抱歉，没有找到相关的烹饪信息。请尝试其他问题。",
+                    "strategy": analysis.recommended_strategy.value, "sources": [],
+                    "cache_hit": None, "latency_ms": round((time.time() - t0) * 1000, 1)}
+
+        # 5) 生成（AsyncOpenAI，让事件循环在等 LLM 时处理其它请求）
+        tg2 = time.time()
+        with stage_timer("generate"):
+            answer = await self.generation_module.generate_adaptive_answer_async(question, relevant_docs)
+        generate_ms = (time.time() - tg2) * 1000
+        LLM_CALLS.labels(stage="generate").inc()
+
+        latency_ms = round((time.time() - t0) * 1000, 1)
+        sources = [_doc_source(d) for d in relevant_docs]
+        strategy = analysis.recommended_strategy.value
+        stages = {"gate_ms": round(gate_ms, 1), "retrieve_ms": round(retrieve_ms, 1),
+                  "generate_ms": round(generate_ms, 1)}
+        # 6) 缓存落库
+        if self.cache is not None:
+            payload = {"answer": answer, "strategy": strategy, "sources": sources, "latency_ms": latency_ms}
+            self.cache.set_answer(question, payload)
+            self.cache.register_semantic(question, payload)
+        return {"answer": answer, "strategy": strategy, "sources": sources,
+                "cache_hit": None, "latency_ms": latency_ms, "stages": stages}
+
     def run_interactive(self):
         """运行交互式问答"""
         if not self.system_ready:
@@ -399,7 +568,11 @@ class AdvancedGraphRAGSystem:
                 print("✅ 现有集合已删除")
             else:
                 print("删除集合时出现问题，继续重建...")
-            
+
+            # P1：知识库变了，旧缓存必须失效（答案/语义/路由/embedding 全清）
+            cleared = self.invalidate_cache()
+            print(f"🗑️ 已失效缓存（清除 {cleared} 个键）")
+
             # 重新构建知识库
             print("开始重建知识库...")
             self.build_knowledge_base()
@@ -411,6 +584,18 @@ class AdvancedGraphRAGSystem:
             print(f"❌ 重建失败: {e}")
             print("建议：请检查Milvus服务状态后重试")
     
+    def cache_stats(self) -> dict:
+        """P1 缓存命中率与状态（喂给 P5 指标 / /health）。"""
+        if self.cache is None:
+            return {"enabled": False, "redis_available": False}
+        return self.cache.stats()
+
+    def invalidate_cache(self) -> int:
+        """知识库 rebuild 等场景主动失效缓存。返回清除键数。"""
+        if self.cache is None:
+            return 0
+        return self.cache.invalidate_all()
+
     def _cleanup(self):
         """清理资源"""
         if self.data_module:

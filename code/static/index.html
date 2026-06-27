@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>尝尝咸淡 · 检索工坊</title>
+  <link rel="preconnect" href="https://rsms.me">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">尝尝咸淡</span>
+      <span class="brand-sub">检索工坊</span>
+    </div>
+    <div class="metrics" id="metrics" aria-live="polite">
+      <span class="muted small">读取监控中…</span>
+    </div>
+  </header>
+
+  <main class="workshop">
+    <!-- 左：对话 -->
+    <section class="pane pane-chat" aria-label="对话">
+      <div class="pane-head">对话</div>
+      <div class="messages" id="messages" role="log">
+        <div class="msg msg-assistant">
+          <p>你好，我是烹饪助手。试试问：<em>用了青辣椒的素菜有哪些？</em> 或 <em>和可乐鸡翅一样用了鸡翅中的菜还有哪些？</em></p>
+        </div>
+      </div>
+      <form class="composer" id="composer" autocomplete="off">
+        <input id="input" placeholder="问点什么…" aria-label="问题输入" />
+        <button id="send" type="submit">发送</button>
+      </form>
+    </section>
+
+    <!-- 中：检索溯源检视器 -->
+    <section class="pane pane-inspector" aria-label="检索溯源">
+      <div class="pane-head">检索溯源 · X 光</div>
+      <div class="inspector" id="inspector">
+        <div class="empty">
+          <p class="empty-title">还没有问答</p>
+          <p>提问后这里展示：<strong>路由策略</strong>、<strong>缓存命中层</strong>、<strong>每步耗时</strong>、以及命中的每道菜分别来自<strong>哪路检索</strong>、分数多少。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 右：知识图谱 -->
+    <section class="pane pane-graph" aria-label="知识图谱">
+      <div class="pane-head">
+        知识图谱
+        <span class="legend">
+          <span class="lg lg-recipe">菜谱</span>
+          <span class="lg lg-ingr">食材</span>
+        </span>
+      </div>
+      <div class="graph-wrap" id="graphWrap">
+        <svg id="graph" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+        <div class="graph-empty" id="graphEmpty">命中的菜谱在图谱里的关系会画在这里</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
