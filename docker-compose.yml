@@ -114,13 +114,11 @@ services:
       timeout: 20s
       retries: 3
 
-  # ============ Redis（缓存 + 限流）============
+  # ============ Redis（缓存 + 限流，仅 app 内部访问，不对外映射避免与宿主 6379 冲突）============
   redis:
     image: redis:7-alpine
     container_name: graph-rag-redis
     command: ["redis-server", "--appendonly", "yes"]
-    ports:
-      - "6379:6379"
     volumes:
       - redis_data:/data
     healthcheck:
