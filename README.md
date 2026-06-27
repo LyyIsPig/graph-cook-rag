@@ -100,7 +100,9 @@
 ```
 graph_cook_rag/
 ├── README.md · LICENSE · requirements.txt · PRODUCT.md
+├── Dockerfile · docker-compose.yml  # 一键部署（全栈 + 自动灌数据）
 ├── Graph_RAG_system_flow.png        # 架构图
+├── .github/workflows/ci.yml         # CI（lint + 语法 + 无服务单测）
 ├── code/                            # RAG 问答系统
 │   ├── main.py                      # 系统编排 + async 问答
 │   ├── config.py                    # 统一配置（.env 注入）
@@ -111,9 +113,7 @@ graph_cook_rag/
 │   ├── eval/                        # 评测体系（指标/测试集/对比脚本）
 │   └── static/                      # 工坊前端（index.html / styles.css / app.js）
 ├── data_pipeline/                   # 知识图谱构建（LLM 解析菜谱→Neo4j）
-├── data/                            # 种子数据 + docker-compose
-│   ├── cypher/                      # Neo4j 导入文件（nodes/relationships/csv）
-│   └── docker-compose.yml           # Milvus + Redis
+├── data/cypher/                     # Neo4j 导入文件（nodes/relationships/csv，seed 自动灌）
 └── docs/                            # 开发记录（路线图/问题排查/改进待办/HNSW）
 ```
 
@@ -121,30 +121,25 @@ graph_cook_rag/
 
 ## 🚀 五、快速开始
 
-### 1. 起基础设施（Neo4j + Milvus + Redis）
+### 方式一：一键 Docker（推荐）
 
 ```bash
-cd data
-docker compose up -d                 # 起 Milvus(etcd/minio/standalone) + Redis
-# Neo4j 单独起（或加入 compose），导入 data/cypher/neo4j_import.cypher
-```
-
-### 2. 装依赖 + 配密钥
-
-```bash
-pip install -r requirements.txt
 cp code/.env.example code/.env        # 填入 LLM_API_KEY（智谱 GLM）、DEEPSEEK_API_KEY（评测判官）
-```
-
-### 3. 跑起来
-
-```bash
-cd code
-python -m uvicorn api.server:app --host 0.0.0.0 --port 8000
+docker compose up -d --build          # Neo4j+Milvus+Redis + 自动灌数据 + 应用，一条命令全起
 # 浏览器打开 http://localhost:8000  →  检索工坊前端
 ```
 
-> 首次启动会加载 BGE 嵌入模型并连接知识库（已存在则直接加载）。
+> 首次构建会拉 PyTorch + 把 BGE 模型烤进镜像（约 2-3GB，需联网），之后启动很快。`seed` 容器会自动把 `data/cypher` 导入 Neo4j（已存在则跳过）。
+
+### 方式二：本地开发（只起基础设施，app 本地跑）
+
+```bash
+docker compose up -d neo4j standalone redis   # 只起基础设施（不起 app 容器）
+pip install -r requirements.txt
+cd code && python -m uvicorn api.server:app --host 0.0.0.0 --port 8000
+```
+
+> 常用端口：app `8000` · Neo4j 浏览器 `7474`（neo4j/all-in-rag）· Milvus `19530` · MinIO 控制台 `9001` · Redis `6379`。
 
 ---
 

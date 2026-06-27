@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  check:
+    name: Lint + 语法 + 无服务单测
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 安装轻量依赖（lint + 无服务单测所需）
+        run: pip install ruff numpy redis
+
+      - name: 语法检查（compileall 全量）
+        run: python -m compileall -q code
+
+      - name: 静态检查（ruff：未定义名等真实 bug）
+        run: ruff check --select F821,F811,E9 code
+
+      - name: 无服务单测（FakeRedis 缓存逻辑 + 指标纯函数）
+        working-directory: code
+        run: |
+          python -m eval._test_cache
+          python -m eval._selftest_metrics

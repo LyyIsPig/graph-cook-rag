@@ -1,0 +1,35 @@
+# 密钥（绝不进镜像）
+**/.env
+**/.env.*
+!code/.env.example
+
+# Git / CI
+.git
+.github
+
+# Python 缓存
+**/__pycache__
+**/*.py[cod]
+**/*.egg-info
+.pytest_cache
+
+# 运行产物（镜像里不需要，挂载或现跑）
+code/eval/results
+data_pipeline/ai_output
+**/*.log
+
+# Docker 卷数据
+data/volumes
+
+# 文档/图（镜像里不需要）
+docs
+README.md
+LICENSE
+PRODUCT.md
+*.md
+!code/rag_modules/**/*.md
+Graph_RAG_system_flow.*
+
+# 本地状态
+.impeccable
+.claude
