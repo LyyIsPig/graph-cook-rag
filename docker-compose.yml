@@ -18,7 +18,7 @@ services:
       - "7687:7687"   # Bolt
     volumes:
       - neo4j_data:/data
-      - ./data/cypher:/var/lib/neo4j/import:ro   # 种子数据挂进 import 目录
+      - ./data/cypher:/var/lib/neo4j/import   # 种子数据挂进 import 目录（不能 :ro，neo4j 入口要 chown）
     healthcheck:
       test: ["CMD-SHELL", "cypher-shell -u neo4j -p all-in-rag 'RETURN 1' || exit 1"]
       interval: 10s
